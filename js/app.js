@@ -17,7 +17,7 @@ Enemy.prototype.update = function(dt) {
     this.x = this.x + this.speed;
     if(this.x >=404){
         this.x=0;
-        this.speed = this.random(5,10);
+        this.speed = this.random(1,10);
         this.y = this.rows[Math.floor(Math.random() * this.rows.length)];
     };       
     // You should multiply any movement by the dt parameter
@@ -37,7 +37,7 @@ Enemy.prototype.random = function (min, max) {
 // Now write your own player class
 var Player = function(){
     this.x = 202;
-    this.y = 400;
+    this.y = 386;
 
     this.sprite = 'images/char-boy.png';
 }
@@ -46,8 +46,14 @@ Player.prototype.update = function() {
     if(this.x >= 404){this.x = 404};
     if(this.x <= 0){this.x = 0};  
     if(this.y >= 400){this.y = 400};
-    if(this.y <= 0){this.y = 0};
-    
+    if(this.y < 54){this.y = 386};
+
+    allEnemies.forEach(element => {
+        if((this.y === element.y) && ((this.x <= (element.x + 50)) && (this.x >=(element.x - 50)))){
+            this.x = 202;
+            this.y =386;
+        }         
+    });
 }
 
 Player.prototype.render = function() {
