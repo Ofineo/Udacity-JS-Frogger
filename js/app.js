@@ -1,8 +1,9 @@
 // Enemies our player must avoid
 var Enemy = function() {
     // Variables applied to each of our instances go here,
+    this.rows = [220, 137, 54];
     this.x = 1;
-    this.y = this.random(40,200);
+    this.y = this.rows[Math.floor(Math.random() * this.rows.length)];
     this.speed = 7;
     // we've provided one for you to get started
     // The image/sprite for our enemies, this uses
@@ -12,10 +13,12 @@ var Enemy = function() {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
+    
     this.x = this.x + this.speed;
     if(this.x >=404){
         this.x=0;
         this.speed = this.random(5,10);
+        this.y = this.rows[Math.floor(Math.random() * this.rows.length)];
     };       
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
@@ -43,7 +46,8 @@ Player.prototype.update = function() {
     if(this.x >= 404){this.x = 404};
     if(this.x <= 0){this.x = 0};  
     if(this.y >= 400){this.y = 400};
-    if(this.y <= 0){this.y = 0};   
+    if(this.y <= 0){this.y = 0};
+    
 }
 
 Player.prototype.render = function() {
