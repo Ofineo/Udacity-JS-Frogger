@@ -1,21 +1,22 @@
 // Enemies our player must avoid
 var Enemy = function() {
     // Variables applied to each of our instances go here,
-    let x = 110;
-    let y = 220;
-    let speed = 10;
+    this.x = 1;
+    this.y = this.random(40,200);
+    this.speed = 7;
     // we've provided one for you to get started
-
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
 };
-
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-    
-    return this.x;
+    this.x = this.x + this.speed;
+    if(this.x >=404){
+        this.x=0;
+        this.speed = this.random(5,10);
+    };       
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
@@ -26,25 +27,46 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+Enemy.prototype.random = function (min, max) {
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+
 // Now write your own player class
 var Player = function(){
-    let x = 1;
-    let y = 2;
+    this.x = 202;
+    this.y = 400;
 
-    this.sprite = 'images/char-horn-girl.png';
+    this.sprite = 'images/char-boy.png';
 }
 
 Player.prototype.update = function() {
-
+    if(this.x >= 404){this.x = 404};
+    if(this.x <= 0){this.x = 0};  
+    if(this.y >= 400){this.y = 400};
+    if(this.y <= 0){this.y = 0};   
 }
 
 Player.prototype.render = function() {
-
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 
-Player.prototype.handleInput = function() {
-
-
+Player.prototype.handleInput = function(key) {
+    switch(key) {
+        case 'up':
+            this.y = this.y - 83;
+            break;
+        case 'down':
+            this.y = this.y + 83;
+            break;
+        case 'right':
+            this.x = this.x + 101;
+            break;
+        case 'left':
+            this.x = this.x - 101;
+            break;
+        default:
+            break;
+    }
 }
 // This class requires an update(), render() and
 // a handleInput() method.
