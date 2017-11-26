@@ -88,7 +88,9 @@ var enemy2 = new Enemy();
 
 var enemy3 = new Enemy();
 
-var allEnemies = [enemy1, enemy2, enemy3];
+var enemy4 = new Enemy();
+
+var allEnemies = [enemy1, enemy2, enemy3, enemy4];
 
 // Place the player object in a variable called player
 var player = new Player();
