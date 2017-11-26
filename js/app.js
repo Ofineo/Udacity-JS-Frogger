@@ -45,7 +45,7 @@ var Player = function(){
 Player.prototype.update = function() {
     if(this.x >= 404){this.x = 404};
     if(this.x <= 0){this.x = 0};  
-    if(this.y >= 400){this.y = 400};
+    if(this.y >= 386){this.y = 386};
     if(this.y < 54){this.y = 386};
 
     allEnemies.forEach(element => {
