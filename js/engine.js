@@ -119,7 +119,7 @@ var Engine = (function(global) {
             row, col;
         
         // Before drawing, clear existing canvas
-        ctx.clearRect(0,0,canvas.width,canvas.height)
+       ctx.clearRect(0,0,canvas.width,canvas.height)
 
         /* Loop through the number of rows and columns we've defined above
          * and, using the rowImages array, draw the correct image for that
@@ -154,6 +154,7 @@ var Engine = (function(global) {
         });
 
         player.render();
+        start();
     }
 
     /* This function does nothing but it could have been a good place to
@@ -161,7 +162,25 @@ var Engine = (function(global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
-        // noop
+        
+    }
+
+    function start() {
+
+        //setting common tex attributes
+        ctx.textAlign = "center";
+        ctx.fillStyle = "white";
+        ctx.font = "36pt Impact";
+        ctx.strokeStyle = "black";
+        ctx.lineWidth = 3;
+
+        //Top line text	
+        ctx.fillText("WELCOME TO FROGGER!", canvas.width/2,canvas.height/2);	  
+        ctx.strokeText("WELCOME TO FROGGER!", canvas.width/2,canvas.height/2); 
+    }
+
+    function lives() {
+
     }
 
     /* Go ahead and load all of the images we know we're going to need to
